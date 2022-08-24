@@ -20,6 +20,16 @@ class Product
 	 */
 	private $name;
 
+	public function __construct($product = [])
+	{
+		if (isset($product['id'])) {
+			$this->id = $product['id'];
+		}
+		if (isset($product['name'])) {
+			$this->name = $product['name'];
+		}
+	}
+
 	public function getId()
 	{
 		return $this->id;

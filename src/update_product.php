@@ -2,6 +2,11 @@
 // update_product.php <id> <new-name>
 require_once "bootstrap.php";
 
+if (!isset($argv[1]) || !isset($argv[2])) {
+	echo "Usage: update_product.php <id> <new-name>\n";
+	return;
+}
+
 $id = $argv[1];
 $newName = $argv[2];
 

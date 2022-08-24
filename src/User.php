@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -21,6 +22,40 @@ class User
 	 * @var string
 	 */
 	private $name;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Bug", mappedBy="reporter")
+	 * @var Bug[] An ArrayCollection of Bug objects.
+	 */
+	private $reportedBugs;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Bug", mappedBy="engineer")
+	 * @var Bug[] An ArrayCollection of Bug objects.
+	 */
+	private $assignedBugs;
+
+	public function __construct($userData = [])
+	{
+		$this->reportedBugs = new ArrayCollection();
+		$this->assignedBugs = new ArrayCollection();
+		if (isset($userData['id'])) {
+			$this->id = $userData['id'];
+		}
+		if (isset($userData['name'])) {
+			$this->name = $userData['name'];
+		}
+	}
+
+	public function addReportedBug(Bug $bug)
+	{
+		$this->reportedBugs[] = $bug;
+	}
+
+	public function assignedToBug(Bug $bug)
+	{
+		$this->assignedBugs[] = $bug;
+	}
 
 	public function getId()
 	{

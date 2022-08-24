@@ -2,6 +2,11 @@
 // show_product.php <id>
 require_once "bootstrap.php";
 
+if (!isset($argv[1])) {
+	echo "Usage: show_product.php <id>\n";
+	return;
+}
+
 $id = $argv[1];
 $product = $entityManager->find('Product', $id);
 

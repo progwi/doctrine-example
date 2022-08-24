@@ -1,0 +1,14 @@
+[
+	{
+		"id": 1,
+		"description": "The device does not work properly.",
+		"created": "2022-01-01T00:00:00.000Z",
+		"reporter": 1,
+		"engineer": 2,
+		"status": "OPEN",
+		"products": [
+			10,
+			20
+		]
+	}
+]

@@ -13,6 +13,9 @@ $useSimpleAnnotationReader = false;
 $config = ORMSetup::createAnnotationMetadataConfiguration(array(__DIR__ . ""), $isDevMode, $proxyDir, $cache, $useSimpleAnnotationReader);
 
 // database configuration parameters
+/**
+ * sudo apt-get install php7.4-mysql
+ */
 $conn = array(
 	'driver' => 'pdo_mysql',
 	'user' => 'root',
@@ -22,3 +25,11 @@ $conn = array(
 
 // obtaining the entity manager
 $entityManager = EntityManager::create($conn, $config);
+
+/**
+ * Some doctrine commands:
+ * 
+ * php vendor/bin/doctrine orm:schema-tool:update --force
+ * php vendor/bin/doctrine orm:schema-tool:drop --force
+ * php vendor/bin/doctrine orm:schema-tool:create
+ */

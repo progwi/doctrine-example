@@ -1,0 +1,26 @@
+[
+	{
+		"id": "10",
+		"name": "Notebook"
+	},
+	{
+		"id": "20",
+		"name": "Desktop"
+	},
+	{
+		"id": "30",
+		"name": "Mouse"
+	},
+	{
+		"id": "40",
+		"name": "Monitor"
+	},
+	{
+		"id": "50",
+		"name": "Keyboard"
+	},
+	{
+		"id": "60",
+		"name": "Headset"
+	}
+]

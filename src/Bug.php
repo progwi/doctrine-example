@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -33,6 +34,58 @@ class Bug
 	 * @var string
 	 */
 	private $status;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="assignedBugs")
+	 */
+	private $engineer;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="reportedBugs")
+	 */
+	private $reporter;
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="Product")
+	 */
+	private $products;
+
+	public function __construct()
+	{
+		$this->products = new ArrayCollection();
+	}
+
+	public function assignToProduct(Product $product)
+	{
+		$this->products[] = $product;
+	}
+
+	public function getProducts()
+	{
+		return $this->products;
+	}
+
+	public function setEngineer(User $engineer)
+	{
+		$engineer->assignedToBug($this);
+		$this->engineer = $engineer;
+	}
+
+	public function setReporter(User $reporter)
+	{
+		$reporter->addReportedBug($this);
+		$this->reporter = $reporter;
+	}
+
+	public function getEngineer()
+	{
+		return $this->engineer;
+	}
+
+	public function getReporter()
+	{
+		return $this->reporter;
+	}
 
 	public function getId()
 	{
