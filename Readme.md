@@ -1,0 +1,1 @@
+This shows a working example of Doctrine ORM.
